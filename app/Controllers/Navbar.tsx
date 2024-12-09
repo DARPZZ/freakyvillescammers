@@ -11,7 +11,7 @@ function Navbar() {
               <td className="flex justify-center">
                 <Link
                   to="/"
-                  className="flex p-3 w-full  items-center  justify-center  bg-blue-700 rounded-lg hover:bg-blue-600 transition duration-300"
+                  className="flex p-3 w-full justify-center  bg-blue-700 rounded-lg hover:bg-blue-600 transition duration-300"
                 >
                   Hjem
                 </Link>
