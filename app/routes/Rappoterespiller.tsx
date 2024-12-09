@@ -29,7 +29,7 @@ function Rappoterespiller() {
       <div className=" h-screen  w-full flex  justify-center items-center">
         <div>
           <form
-            className="flex flex-col w-full space-y-5"
+            className="flex flex-col w-full space-y-5 "
             onSubmit={handleSubmit}
           >
             <input
@@ -37,7 +37,7 @@ function Rappoterespiller() {
               name="navnPåSpiller"
               value={formData.navnPåSpiller}
               onChange={handleChange}
-              className="border-2  "
+              className=" w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-blue-300 shadow-sm focus:shadow  "
               placeholder="Navn på scammer"
             />
             <input
@@ -45,12 +45,13 @@ function Rappoterespiller() {
               name="VærdiScammetFor"
               value={formData.VærdiScammetFor}
               onChange={handleChange}
-              className="border-2 "
+              className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-blue-300 shadow-sm focus:shadow   "
               placeholder="Værdi scammet for"
             />
             <input
-              className="pt-5 align-top border-2 bg-blue-600 text-xl text-white"
+              className="  text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
               type="submit"
+              
             />
           </form>
         </div>
