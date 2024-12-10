@@ -1,14 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+// Define the Scammer type for TypeScript
+interface Scammer {
+  fldScammerId: number;
+  fldMinecraftNavn: string;
+  fldScammetVærdi: number;
+}
 
 function ScammerTable() {
+  const [scammers, setScammers] = useState<Scammer[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  // Fetch data from the backend
+  useEffect(() => {
+    const fetchScammers = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/scammer/all");
+        if (!response.ok) { 
+          throw new Error("Failed to fetch data");
+        }
+        const data: Scammer[] = await response.json();
+        setScammers(data);
+      } catch (error) {
+        console.error("Error fetching scammers:", error);
+      }
+    };
+
+    fetchScammers();
+  }, []);
+
   return (
-    <div className=" w-full h-full flex justify-center ">
+    <div className="w-full h-full flex justify-center">
       <div className="flex flex-col w-full items-center">
-        <h1 className="text-xl font-bold">
-          Liste over scammers på freakyville
-        </h1>
+        <h1 className="text-2xl font-bold">Scammers på Freakyville</h1>
+
         <div className="pt-10 w-4/5">
-          <form className="max-w-md mx-auto">
+          <form
+            className="max-w-md mx-auto"
+            onSubmit={(e) => e.preventDefault()}
+          >
             <label
               form="default-search"
               className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -36,7 +66,9 @@ function ScammerTable() {
               <input
                 type="search"
                 id="default-search"
-                className="block placeholder:text-white  text-white w-full p-4 ps-10 text-sm  border animated-background bg-gradient-to-r from-blue-500 via-blue-500 to-indigo-500 border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="block placeholder:text-white text-white w-full p-4 ps-10 text-sm border animated-background bg-gradient-to-r from-blue-500 via-blue-500 to-indigo-500 border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Søg efter en person"
                 required
               />
@@ -47,7 +79,6 @@ function ScammerTable() {
                 Søg
               </button>
             </div>
-            <div></div>
           </form>
         </div>
 
@@ -59,50 +90,33 @@ function ScammerTable() {
                   Scammer Navn
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Scammet værdi
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Category
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Price
+                  Scammet for i DB(s)
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  Apple MacBook Pro 17"
-                </th>
-                <td className="px-6 py-4">Silver</td>
-                <td className="px-6 py-4">Laptop</td>
-                <td className="px-6 py-4">$2999</td>
-              </tr>
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  Microsoft Surface Pro
-                </th>
-                <td className="px-6 py-4">White</td>
-                <td className="px-6 py-4">Laptop PC</td>
-                <td className="px-6 py-4">$1999</td>
-              </tr>
-              <tr className="bg-white dark:bg-gray-800">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  Magic Mouse 2
-                </th>
-                <td className="px-6 py-4">Black</td>
-                <td className="px-6 py-4">Accessories</td>
-                <td className="px-6 py-4">$99</td>
-              </tr>
+              {scammers.length > 0 ? (
+                scammers.map((scammer) => (
+                  <tr
+                    key={scammer.fldScammerId}
+                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                  >
+                    <th className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      {scammer.fldMinecraftNavn}
+                    </th>
+                    <td className="px-6 py-4">{scammer.fldScammetVærdi}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td
+                    colSpan={4}
+                    className="px-6 py-4 text-center text-gray-500 dark:text-gray-400"
+                  >
+                    Ingen scammers fundet.
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
