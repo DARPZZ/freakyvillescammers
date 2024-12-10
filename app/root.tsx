@@ -25,11 +25,11 @@ export default function App() {
         <Links />
       </head>
       <body className="bg-gray-100">
-        <div className="flex w-full h-screen">
-          <div className="w-1/6 bg-blue-900 text-white">
+        <div className=" flex w-full h-full">
+          <div className="w-1/6 fixed h-full bg-blue-900 text-white">
             <Navbar />
           </div>
-          <div className="w-full">
+          <div className="w-full ml-[16.6667%]">
             <Outlet />
           </div>
         </div>

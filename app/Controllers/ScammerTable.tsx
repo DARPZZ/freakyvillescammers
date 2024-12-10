@@ -10,8 +10,13 @@ interface Scammer {
 function ScammerTable() {
   const [scammers, setScammers] = useState<Scammer[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [filtredScammers, setFiltredScammers] = useState<Scammer[ ]>([]);
+  useEffect(() => {
+    const filteredScammers = scammers.filter((scammer) =>
+      scammer.fldMinecraftNavn.toLowerCase().includes(searchTerm.toLowerCase()))
+    setFiltredScammers(filteredScammers);
+}, [searchTerm]);
 
-  // Fetch data from the backend
   useEffect(() => {
     const fetchScammers = async () => {
       try {
@@ -21,6 +26,7 @@ function ScammerTable() {
         }
         const data: Scammer[] = await response.json();
         setScammers(data);
+        setFiltredScammers(data); 
       } catch (error) {
         console.error("Error fetching scammers:", error);
       }
@@ -30,7 +36,7 @@ function ScammerTable() {
   }, []);
 
   return (
-    <div className="w-full h-full flex justify-center">
+    <div className="w-full  h-full flex justify-center">
       <div className="flex flex-col w-full items-center">
         <h1 className="text-2xl font-bold">Scammers på Freakyville</h1>
 
@@ -72,12 +78,7 @@ function ScammerTable() {
                 placeholder="Søg efter en person"
                 required
               />
-              <button
-                type="submit"
-                className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                Søg
-              </button>
+              
             </div>
           </form>
         </div>
@@ -86,7 +87,7 @@ function ScammerTable() {
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-6  py-3">
                   Scammer Navn
                 </th>
                 <th scope="col" className="px-6 py-3">
@@ -96,7 +97,7 @@ function ScammerTable() {
             </thead>
             <tbody>
               {scammers.length > 0 ? (
-                scammers.map((scammer) => (
+                filtredScammers.map((scammer) => (
                   <tr
                     key={scammer.fldScammerId}
                     className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
