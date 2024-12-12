@@ -1,4 +1,18 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
+import { redirect } from "@remix-run/node";
+import { getUserFromCookie } from "~/Controllers/rolechecker";
+export const loader = async ({ request }: { request: Request }) => {
+  const user = getUserFromCookie(request);
+
+  if (!user) {
+    throw redirect("/login");
+  }
+  console.log(user.role);
+  if (user.role !== "owner") {
+    throw redirect("/unauthorized");
+  } 
+  return user;
+};
 
 function Rappoterespiller() {
   const [formData, setFormData] = useState({
@@ -27,7 +41,7 @@ function Rappoterespiller() {
           fldMinecraftNavn: formData.minecraftNavn,
           fldScammetVærdi: formData.fldScammetVærdi,
         }),
-        credentials: 'include' 
+        credentials: "include",
       });
 
       if (!response.ok) {
