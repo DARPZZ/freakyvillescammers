@@ -9,10 +9,10 @@ declare module "@remix-run/node" {
 }
 
 export default defineConfig({
-  base: "/FREAKYVILLESCAMMERS/",
+  base: "/freakyvillescammers/",
   plugins: [
     remix({
-      basename: "/FREAKYVILLESCAMMERS/",
+      basename: "/freakyvillescammers/",
       ssr: false,
       future: {
         
