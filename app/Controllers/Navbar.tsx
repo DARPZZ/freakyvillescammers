@@ -10,22 +10,25 @@ interface User {
 
 function Navbar() {
   const [user, setUser] = useState<User | null>(null);
+  const[userLoggedin,setUserLoggedin] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     const getUserFromToken = async () => {
       const token = document.cookie.split(';').find(row => row.startsWith('authToken='));
-     
+      
       if (token) {
         try {
           const decodedToken = jwtDecode(token.split('=')[1]) as User; 
-          
+          setUserLoggedin(true)
           setUser({ email: decodedToken.email, role: decodedToken.role }); 
          
         } catch (error) {
           console.error("Invalid token:", error); 
           
         }
+      }else{
+      setUserLoggedin(false);
       }
     };
 
@@ -60,6 +63,7 @@ function Navbar() {
                 </Link>
               </td>
             </tr>
+            {userLoggedin ==false && (
             <tr className="py-2">
               <td>
                 <Link
@@ -70,6 +74,14 @@ function Navbar() {
                 </Link>
               </td>
             </tr>
+            )}
+               {userLoggedin ==true && (
+            <tr className="py-2">
+              <td>
+               <button className="flex p-3 bg-blue-700 justify-center rounded-lg hover:bg-blue-600 transition duration-300 w-full">Logud</button>
+              </td>
+            </tr>
+            )}
             {user?.role =='owner' && (
             <tr className="py-2">
               <td>
