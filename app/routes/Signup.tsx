@@ -1,6 +1,46 @@
-import React from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 
 function Signup() {
+  const [formData, setFormData] = useState({
+    Email: "",
+    Password: "",
+  });
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:3000/user/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Email: formData.Email,
+          password: formData.Password,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit data");
+      }
+
+      const result = await response.json();
+
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Noget gik galt. Prøv igen.");
+    }
+  };
+
   return (
     <div className=" h-screen w-full justify-center items-center flex ">
       <div className=" h-1/2 w-1/2 flex items-center justify-center ">
@@ -11,7 +51,10 @@ function Signup() {
                 <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                   Opret en Konto
                 </h1>
-                <form className="space-y-4 md:space-y-6" action="#">
+                <form
+                  className="space-y-4 md:space-y-6"
+                  onSubmit={handleSubmit}
+                >
                   <div>
                     <label
                       htmlFor="email"
@@ -21,9 +64,11 @@ function Signup() {
                     </label>
                     <input
                       type="email"
-                      name="email"
+                      name="Email"
                       id="email"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      value={formData.Email}
+                      onChange={handleChange}
                     />
                   </div>
                   <div>
@@ -35,10 +80,12 @@ function Signup() {
                     </label>
                     <input
                       type="password"
-                      name="password"
+                      name="Password"
                       id="password"
                       placeholder="••••••••"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      value={formData.Password}
+                      onChange={handleChange}
                     />
                   </div>
 

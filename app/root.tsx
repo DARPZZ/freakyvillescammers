@@ -12,7 +12,7 @@ import styles from "./tailwind.css?url";
 import Navbar from "./Controllers/Navbar";
 
 export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: styles },
+  { rel: "stylesheet", href: '/app/tailwind.css' },
 ];
 
 export default function App() {

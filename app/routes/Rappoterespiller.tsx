@@ -27,6 +27,7 @@ function Rappoterespiller() {
           fldMinecraftNavn: formData.minecraftNavn,
           fldScammetVærdi: formData.fldScammetVærdi,
         }),
+        credentials: 'include' 
       });
 
       if (!response.ok) {
