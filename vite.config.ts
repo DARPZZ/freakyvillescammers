@@ -9,9 +9,13 @@ declare module "@remix-run/node" {
 }
 
 export default defineConfig({
+  base: "/FREAKYVILLESCAMMERS/",
   plugins: [
     remix({
+      basename: "/FREAKYVILLESCAMMERS/",
+      ssr: false,
       future: {
+        
         v3_fetcherPersist: true,
         v3_relativeSplatPath: true,
         v3_throwAbortReason: true,
@@ -21,5 +25,5 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
-  base: "/FREAKYVILLESCAMMERS/"
+ 
 });
