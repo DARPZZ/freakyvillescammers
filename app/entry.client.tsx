@@ -7,8 +7,8 @@ startTransition(() => {
   hydrateRoot(
     document,
     <StrictMode>
-      <HashRouter>
-        <RemixBrowser basename="/freakyvillescammers/" />
+      <HashRouter basename="/freakyvillescammers/">
+        <RemixBrowser />
       </HashRouter>
     </StrictMode>
   );
