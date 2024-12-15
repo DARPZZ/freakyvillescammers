@@ -20,7 +20,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:4000/user/login", {
+      const response = await fetch("http://srv589522.hstgr.cloud:4000/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

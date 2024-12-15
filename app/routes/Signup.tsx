@@ -1,5 +1,6 @@
+import { Link } from "@remix-run/react";
 import React, { ChangeEvent, FormEvent, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 function Signup() {
   const [formData, setFormData] = useState({
     Email: "",
@@ -18,7 +19,7 @@ function Signup() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:4000/user/create", {
+      const response = await fetch("http://srv589522.hstgr.cloud:4000/user/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -115,12 +116,12 @@ function Signup() {
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Har du allerde en konto?{" "}
-                <a
-                  href="/Login"
+                <Link
+                  to="/Login"
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
-                  Login here
-                </a>
+                  Login
+                </Link>
               </p>
             </form>
           </div>

@@ -2,6 +2,7 @@ import React, { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import { useNavigate } from "@remix-run/react"; // for redirection
 import { jwtDecode } from "jwt-decode"; // import jwt-decode
 import { User } from "../Controllers/rolechecker"; // assuming this interface is defined as you showed
+import { cwd } from "node:process";
 
 function Rappoterespiller() {
   const [formData, setFormData] = useState({
@@ -32,6 +33,7 @@ function Rappoterespiller() {
 
       try {
         const decodedToken = jwtDecode<User>(token.split('=')[1]);
+      
         if (decodedToken.role !== "owner") {
           navigate("/unauthorized"); // If role is not owner, redirect to unauthorized
         } else {
@@ -58,7 +60,7 @@ function Rappoterespiller() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:4000/scammer/opret", {
+      const response = await fetch("http://srv589522.hstgr.cloud:4000/scammer/opret", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
