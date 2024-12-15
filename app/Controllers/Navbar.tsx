@@ -56,7 +56,8 @@ function Navbar() {
             <tr className="py-2">
               <td>
                 <Link
-                  to="/#Signup"
+                  to="Signup"
+                  
                   className="flex p-3 justify-center bg-blue-700 rounded-lg hover:bg-blue-600 transition duration-300"
                 >
                   Signup
@@ -67,7 +68,7 @@ function Navbar() {
             <tr className="py-2">
               <td>
                 <Link
-                  to="#Login"
+                  to="Login"
                   className="flex p-3 justify-center bg-blue-700 rounded-lg hover:bg-blue-600 transition duration-300"
                 >
                   Login

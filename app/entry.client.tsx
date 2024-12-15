@@ -12,7 +12,7 @@ startTransition(() => {
   hydrateRoot(
     document,
     <StrictMode>
-      <RemixBrowser />
+      <RemixBrowser basename="/freakyvillescammers/" />
     </StrictMode>
   );
 });
