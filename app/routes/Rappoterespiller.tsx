@@ -58,7 +58,7 @@ function Rappoterespiller() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/scammer/opret", {
+      const response = await fetch("http://localhost:4000/scammer/opret", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
