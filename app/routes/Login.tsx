@@ -44,7 +44,7 @@ function Login() {
 
       const result = await response.json();
     } catch (error) {
-      alert("Noget gik galt. Prøv igen.");
+      alert("Noget gik galt. Prøv igen." + error);
     }
   };
 
