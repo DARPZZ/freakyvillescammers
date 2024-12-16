@@ -19,7 +19,7 @@ function Signup() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://https://srv589522.hstgr.cloud/:4000/user/create", {
+      const response = await fetch("https://srv589522.hstgr.cloud/:4000/user/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
