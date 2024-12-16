@@ -18,35 +18,33 @@ function Login() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+  
     try {
       const response = await fetch("https://srv589522.hstgr.cloud:4000/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-         
         },
         body: JSON.stringify({
           Email: formData.Email,
           password: formData.Password,
         }),
-        credentials: 'include',
+        credentials: 'include',  // Ensures cookies are sent and received
       });
-
+  
       if (!response.ok) {
         throw new Error("Failed to submit data");
       }
-      if(response.ok)
-      {
-        
-        navigate('/'); 
-      }
-
-      const result = await response.json();
+  
+  
+      // Navigate to the home page after successful login
+      navigate('/');
     } catch (error) {
-      alert("Noget gik galt. Prøv igen." + error);
+      console.error("Error during login:", error);
+      // Handle error (show error message to the user)
     }
   };
+  
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">

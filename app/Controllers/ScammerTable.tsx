@@ -20,16 +20,15 @@ function ScammerTable() {
 useEffect(() => {
   const fetchScammers = async () => {
     try {
-      console.log("Starting fetch...");
+      
       const response = await fetch('https://srv589522.hstgr.cloud:4000/scammer/all');
-      console.log("Response received:", response);
+   
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       
       const data: Scammer[] = await response.json();
-      console.log("Data fetched:", data);
       
       setScammers(data);
       setFiltredScammers(data);
