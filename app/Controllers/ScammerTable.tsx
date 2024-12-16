@@ -17,23 +17,29 @@ function ScammerTable() {
     setFiltredScammers(filteredScammers);
 }, [searchTerm]);
 
-  useEffect(() => {
-    const fetchScammers = async () => {
-      try {
-        const response = await fetch('https://srv589522.hstgr.cloud:4000/scammer/all');
-        if (!response.ok) { 
-          throw new Error("Failed to fetch data");
-        }
-        const data: Scammer[] = await response.json();
-        setScammers(data);
-        setFiltredScammers(data); 
-      } catch (error) {
-        console.error("Error fetching scammers:", error);
+useEffect(() => {
+  const fetchScammers = async () => {
+    try {
+      console.log("Starting fetch...");
+      const response = await fetch('https://srv589522.hstgr.cloud:4000/scammer/all');
+      console.log("Response received:", response);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-    };
+      
+      const data: Scammer[] = await response.json();
+      console.log("Data fetched:", data);
+      
+      setScammers(data);
+      setFiltredScammers(data);
+    } catch (error) {
+      console.error("Error fetching scammers:", error);
+    }
+  };
 
-    fetchScammers();
-  }, []);
+  fetchScammers();
+}, []);
 
   return (
     <div className="w-full  h-full flex justify-center">
