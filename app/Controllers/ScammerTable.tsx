@@ -20,7 +20,7 @@ function ScammerTable() {
   useEffect(() => {
     const fetchScammers = async () => {
       try {
-        const response = await fetch("http://srv589522.hstgr.cloud:4000/scammer/all");
+        const response = await fetch("http://https://srv589522.hstgr.cloud/:4000/scammer/all");
         if (!response.ok) { 
           throw new Error("Failed to fetch data");
         }

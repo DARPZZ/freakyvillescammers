@@ -60,7 +60,7 @@ function Rappoterespiller() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://srv589522.hstgr.cloud:4000/scammer/opret", {
+      const response = await fetch("http://https://srv589522.hstgr.cloud/:4000/scammer/opret", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
