@@ -14,26 +14,29 @@ function Navbar() {
   const location = useLocation();
 
   useEffect(() => {
-    const getUserFromToken = async () => {
-      const token = document.cookie
-        .split(";")
-        .find((row) => row.startsWith("authToken="));
-
-      if (token) {
-        try {
-          const decodedToken = jwtDecode(token.split("=")[1]) as User;
+    const validateToken = async () => {
+      try {
+        const response = await fetch('/api/auth/validate-token', {
+          method: 'GET',
+          credentials: 'include',
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
           setUserLoggedin(true);
-          setUser({ email: decodedToken.email, role: decodedToken.role });
-        } catch (error) {
-          console.error("Invalid token:", error);
+          setUser({ email: data.email, role: data.role });
+        } else {
+          setUserLoggedin(false);
         }
-      } else {
+      } catch (error) {
+        console.error("Token validation failed:", error);
         setUserLoggedin(false);
       }
     };
-
-    getUserFromToken();
+  
+    validateToken();
   }, [location.pathname]);
+  
 
   return (
     <div className="h-full w-full bg-gray-100">
