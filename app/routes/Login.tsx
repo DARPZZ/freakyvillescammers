@@ -18,29 +18,29 @@ function Login() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
-    const response = await fetch("https://srv589522.hstgr.cloud:4000/user/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        Email: formData.Email,
-        password: formData.Password,
-      }),
-      credentials: 'include',
-    });
-    
-    const data = await response.json();  // Parse the response
-    console.log('Response body:', data);
-    
-    if (!response.ok) {
-      throw new Error(data.error || "Failed to submit data");
-    }
-    
-};
 
-  
+    const response = await fetch(
+      "https://srv589522.hstgr.cloud:4000/user/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Email: formData.Email,
+          password: formData.Password,
+        }),
+        credentials: "include",
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Failed to submit data");
+    }
+    const data = await response.json();
+    const role = data.message;
+    document.cookie = `role=${role}; path=/; max-age=3600; samesite=Lax`;
+    navigate("/");
+  };
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
@@ -86,9 +86,7 @@ function Login() {
                 />
               </div>
               <div className="flex items-center justify-between">
-                <div className="flex items-start">
-                
-                </div>
+                <div className="flex items-start"></div>
                 <a
                   href="#"
                   className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"

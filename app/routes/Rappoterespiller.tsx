@@ -1,7 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState, useEffect } from "react";
-import { useNavigate } from "@remix-run/react"; // for redirection
-import { jwtDecode } from "jwt-decode"; // import jwt-decode
-import { User } from "../Controllers/rolechecker"; // assuming this interface is defined as you showed
+import { useNavigate } from "@remix-run/react";
+import { jwtDecode } from "jwt-decode";
 import { cwd } from "node:process";
 
 function Rappoterespiller() {
@@ -9,10 +8,6 @@ function Rappoterespiller() {
     minecraftNavn: "",
     fldScammetVærdi: "",
   });
-
- 
-
-     
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({
@@ -25,17 +20,20 @@ function Rappoterespiller() {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://srv589522.hstgr.cloud:4000/scammer/opret", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fldMinecraftNavn: formData.minecraftNavn,
-          fldScammetVærdi: formData.fldScammetVærdi,
-        }),
-        credentials: "include",
-      });
+      const response = await fetch(
+        "https://srv589522.hstgr.cloud:4000/scammer/opret",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            fldMinecraftNavn: formData.minecraftNavn,
+            fldScammetVærdi: formData.fldScammetVærdi,
+          }),
+          credentials: "include",
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to submit data");
@@ -54,13 +52,13 @@ function Rappoterespiller() {
     }
   };
 
-
   return (
     <div className="h-screen w-full">
       <div className="flex items-center flex-col">
         <h1 className="text-xl font-bold">Velkommen</h1>
         <h2 className="font-bold">
-          Her har du muligheden for at rapportere en spiller, der scammer på Freakyville.
+          Her har du muligheden for at rapportere en spiller, der scammer på
+          Freakyville.
         </h2>
       </div>
       <div className="h-screen w-full flex justify-center items-center">

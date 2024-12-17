@@ -4,7 +4,6 @@ import { jwtDecode } from "jwt-decode";
 import { useLocation } from "@remix-run/react";
 
 interface User {
-  email: string;
   role: string;
 }
 
@@ -13,30 +12,28 @@ function Navbar() {
   const [userLoggedin, setUserLoggedin] = useState(false);
   const location = useLocation();
 
-  useEffect(() => {
-    const validateToken = async () => {
-      try {
-        const response = await fetch('/api/auth/validate-token', {
-          method: 'GET',
-          credentials: 'include',
-        });
-  
-        if (response.ok) {
-          const data = await response.json();
+   useEffect(() => {
+    const getUserFromToken = () => {
+      const token = document.cookie
+        .split(";")
+        .find((row) => row.startsWith("role="));
+
+      if (token) {
+        const role = token.split("=")[1]; 
+
+        if (role) {
           setUserLoggedin(true);
-          setUser({ email: data.email, role: data.role });
+          setUser({ role }); 
         } else {
           setUserLoggedin(false);
         }
-      } catch (error) {
-        console.error("Token validation failed:", error);
+      } else {
         setUserLoggedin(false);
       }
     };
-  
-    validateToken();
+
+    getUserFromToken();
   }, [location.pathname]);
-  
 
   return (
     <div className="h-full w-full bg-gray-100">
@@ -64,35 +61,39 @@ function Navbar() {
                 </Link>
               </td>
             </tr>
-
-            <tr className="py-2">
-              <td>
-                <Link
-                  to="Login"
-                  className="flex p-3 justify-center bg-blue-700 rounded-lg hover:bg-blue-600 transition duration-300"
-                >
-                  Login
-                </Link>
-              </td>
-            </tr>
-            <tr className="py-2">
-              <td>
-                <button className="flex p-3 bg-blue-700 justify-center rounded-lg hover:bg-blue-600 transition duration-300 w-full">
-                  Logud
-                </button>
-              </td>
-            </tr>
-
-            <tr className="py-2">
-              <td>
-                <Link
-                  to="Rappoterespiller"
-                  className="flex p-3 bg-blue-700 justify-center rounded-lg hover:bg-blue-600 transition duration-300"
-                >
-                  Rappotere en spiller
-                </Link>
-              </td>
-            </tr>
+            {userLoggedin == false && (
+              <tr className="py-2">
+                <td>
+                  <Link
+                    to="Login"
+                    className="flex p-3 justify-center bg-blue-700 rounded-lg hover:bg-blue-600 transition duration-300"
+                  >
+                    Login
+                  </Link>
+                </td>
+              </tr>
+            )}
+            {userLoggedin == true && (
+              <tr className="py-2">
+                <td>
+                  <button className="flex p-3 bg-blue-700 justify-center rounded-lg hover:bg-blue-600 transition duration-300 w-full">
+                    Logud
+                  </button>
+                </td>
+              </tr>
+            )}
+            {user?.role == "owner" && (
+              <tr className="py-2">
+                <td>
+                  <Link
+                    to="/Rappoterespiller"
+                    className="flex p-3 bg-blue-700 justify-center rounded-lg hover:bg-blue-600 transition duration-300"
+                  >
+                    Rappotere en spiller
+                  </Link>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
         <img className="h-1/5 pt-5" src="corruption.png" alt="awdw" />
