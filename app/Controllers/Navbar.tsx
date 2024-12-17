@@ -83,7 +83,7 @@ function Navbar() {
               </td>
             </tr>
             )}
-            {user?.role =='owner' && (
+           
             <tr className="py-2">
               <td>
                 <Link
@@ -94,7 +94,7 @@ function Navbar() {
                 </Link>
               </td>
             </tr>
-            )}
+            
           </tbody>
         </table>
         <img className="h-1/5 pt-5" src="corruption.png" alt="awdw" />
