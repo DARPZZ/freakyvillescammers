@@ -58,7 +58,7 @@ function Login() {
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
-                  htmlFor="email"
+                  htmlFor="Email"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
                   Din email
@@ -75,7 +75,7 @@ function Login() {
               </div>
               <div>
                 <label
-                  htmlFor="password"
+                  htmlFor="Password"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
                   Adgangskodeord
@@ -92,15 +92,7 @@ function Login() {
               </div>
               <div className="flex items-center justify-between">
                 <div className="flex items-start">
-                  
-                  <div className="ml-3 text-sm">
-                    <label
-                      htmlFor="remember"
-                      className="text-gray-500 dark:text-gray-300"
-                    >
-                      Remember me
-                    </label>
-                  </div>
+                
                 </div>
                 <a
                   href="#"
