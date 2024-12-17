@@ -61,27 +61,24 @@ function Navbar() {
                 </Link>
               </td>
             </tr>
-            {userLoggedin == false && (
-              <tr className="py-2">
-                <td>
-                  <Link
-                    to="Login"
-                    className="flex p-3 justify-center bg-blue-700 rounded-lg hover:bg-blue-600 transition duration-300"
-                  >
-                    Login
-                  </Link>
-                </td>
-              </tr>
-            )}
-            {userLoggedin == true && (
-              <tr className="py-2">
-                <td>
-                  <button className="flex p-3 bg-blue-700 justify-center rounded-lg hover:bg-blue-600 transition duration-300 w-full">
-                    Logud
-                  </button>
-                </td>
-              </tr>
-            )}
+
+            <tr className="py-2">
+              <td>
+                <Link
+                  to="Login"
+                  className="flex p-3 justify-center bg-blue-700 rounded-lg hover:bg-blue-600 transition duration-300"
+                >
+                  Login
+                </Link>
+              </td>
+            </tr>
+            <tr className="py-2">
+              <td>
+                <button className="flex p-3 bg-blue-700 justify-center rounded-lg hover:bg-blue-600 transition duration-300 w-full">
+                  Logud
+                </button>
+              </td>
+            </tr>
 
             <tr className="py-2">
               <td>
