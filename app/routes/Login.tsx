@@ -19,31 +19,25 @@ function Login() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   
-    try {
-      const response = await fetch("https://srv589522.hstgr.cloud:4000/user/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          Email: formData.Email,
-          password: formData.Password,
-        }), 
-        credentials: 'include',  // Ensures cookies are sent and received
-      });
-      console.warn(response)
-      if (!response.ok) {
-        throw new Error("Failed to submit data");
-      }
-      const cookies = document.cookie;
-      console.log('Cookies received: ', cookies);
-  
-      // Navigate to the home page after successful login
-      navigate('/');
-    } catch (error) {
-      console.error("Error during login:", error);
-      // Handle error (show error message to the user)
+    const response = await fetch("https://srv589522.hstgr.cloud:4000/user/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        Email: formData.Email,
+        password: formData.Password,
+      }),
+      credentials: 'include',
+    });
+    
+    const data = await response.json();  // Parse the response
+    console.log('Response body:', data);
+    
+    if (!response.ok) {
+      throw new Error(data.error || "Failed to submit data");
     }
+    
 };
 
   
