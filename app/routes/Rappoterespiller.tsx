@@ -54,10 +54,6 @@ function Rappoterespiller() {
     }
   };
 
-  if (!user) {
-    // Optionally render a loading state while checking the user
-    return <div>Loading...</div>;
-  }
 
   return (
     <div className="h-screen w-full">
