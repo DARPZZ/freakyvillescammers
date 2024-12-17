@@ -10,44 +10,9 @@ function Rappoterespiller() {
     fldScammetVærdi: "",
   });
 
-  const [user, setUser] = useState<User | null>(null);
-  const navigate = useNavigate(); // Hook for redirection
+ 
 
-  // Client-side effect to check user
-  useEffect(() => {
-    const fetchUserFromCookie = () => {
-      const cookieHeader = document.cookie;
-      if (!cookieHeader) {
-        navigate("/login"); // If no cookie, redirect to login
-        return;
-      }
-
-      const token = cookieHeader
-        .split(';')
-        .find((row) => row.trim().startsWith('authToken='));
-
-      if (!token) {
-        navigate("/login"); // If no token, redirect to login
-        return;
-      }
-
-      try {
-        const decodedToken = jwtDecode<User>(token.split('=')[1]);
-      
-        if (decodedToken.role !== "owner") {
-          navigate("/unauthorized"); // If role is not owner, redirect to unauthorized
-        } else {
-          setUser(decodedToken); // If valid user and role, set the user state
-        }
-      } catch (error) {
-        console.error("Invalid token:", error);
-        navigate("/login"); // If decoding fails, redirect to login
-      }
-    };
-
-    fetchUserFromCookie();
-  }, [navigate]); // Run on mount
-
+     
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({
