@@ -24,12 +24,12 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="bg-gray-100">
+      <body className="w-full bg-gray-100">
         <div className=" flex w-full h-full">
-          <div className="w-1/6 fixed h-full bg-blue-900 text-white">
+          <div className="w-1/4 bg-blue-900 text-white">
             <Navbar />
           </div>
-          <div className="w-full ml-[16.6667%]">
+          <div className="w-full h-full ml-[0.6667%]">
             <Outlet />
           </div>
         </div>

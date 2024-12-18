@@ -6,6 +6,7 @@ function Signup() {
     Email: "",
     Password: "",
   });
+  
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

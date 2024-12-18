@@ -12,18 +12,18 @@ function Navbar() {
   const [userLoggedin, setUserLoggedin] = useState(false);
   const location = useLocation();
 
-   useEffect(() => {
+  useEffect(() => {
     const getUserFromToken = () => {
       const token = document.cookie
         .split(";")
         .find((row) => row.startsWith("role="));
 
       if (token) {
-        const role = token.split("=")[1]; 
+        const role = token.split("=")[1];
 
         if (role) {
           setUserLoggedin(true);
-          setUser({ role }); 
+          setUser({ role });
         } else {
           setUserLoggedin(false);
         }
@@ -44,25 +44,16 @@ function Navbar() {
             <tr className="py-2">
               <td className="flex justify-center">
                 <Link
-                  to="/"
+                  to=""
                   className="flex p-3 w-full justify-center bg-blue-700 rounded-lg hover:bg-blue-600 transition duration-300"
                 >
                   Hjem
                 </Link>
               </td>
             </tr>
-            <tr className="py-2">
-              <td>
-                <Link
-                  to="Signup"
-                  className="flex p-3 justify-center bg-blue-700 rounded-lg hover:bg-blue-600 transition duration-300"
-                >
-                  Signup
-                </Link>
-              </td>
-            </tr>
+           
             {userLoggedin == false && (
-              <tr className="py-2">
+              <><tr className="py-2">
                 <td>
                   <Link
                     to="Login"
@@ -71,7 +62,16 @@ function Navbar() {
                     Login
                   </Link>
                 </td>
-              </tr>
+              </tr><tr className="py-2">
+                  <td>
+                    <Link
+                      to="Signup"
+                      className="flex p-3 justify-center bg-blue-700 rounded-lg hover:bg-blue-600 transition duration-300"
+                    >
+                      Signup
+                    </Link>
+                  </td>
+                </tr></>
             )}
             {userLoggedin == true && (
               <tr className="py-2">
@@ -83,20 +83,32 @@ function Navbar() {
               </tr>
             )}
             {user?.role == "owner" && (
-              <tr className="py-2">
+              <>
+                <tr className="py-2">
+                  <td>
+                    <Link
+                      to="Rappoterespiller"
+                      className="flex p-3 bg-blue-700 justify-center rounded-lg hover:bg-blue-600 transition duration-300"
+                    >
+                      Rappotere en spiller
+                    </Link>
+                  </td>
+                </tr>
+                <tr>
                 <td>
                   <Link
-                    to="/Rappoterespiller"
-                    className="flex p-3 bg-blue-700 justify-center rounded-lg hover:bg-blue-600 transition duration-300"
+                    to="/Dashboard"
+                    className="flex p-3 justify-center bg-blue-700 rounded-lg hover:bg-blue-600 transition duration-300"
                   >
-                    Rappotere en spiller
+                    Dashboard
                   </Link>
                 </td>
-              </tr>
+                </tr>
+              </>
             )}
           </tbody>
         </table>
-        <img className="h-1/5 pt-5" src="corruption.png" alt="awdw" />
+        <img className="w-2/4 pt-5" src="corruption.png" alt="awdw" />
       </div>
     </div>
   );

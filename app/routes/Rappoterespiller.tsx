@@ -2,8 +2,12 @@ import React, { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import { useNavigate } from "@remix-run/react";
 import { jwtDecode } from "jwt-decode";
 import { cwd } from "node:process";
-
+interface User {
+  role: string;
+}
 function Rappoterespiller() {
+  const navigate = useNavigate();
+  const [user, setUser] = useState<User | null>(null);
   const [formData, setFormData] = useState({
     minecraftNavn: "",
     fldScammetVærdi: "",
@@ -15,6 +19,33 @@ function Rappoterespiller() {
       [name]: value,
     });
   };
+  useEffect(() => {
+    const fetchUserFromCookie = () => {
+      const cookieHeader = document.cookie;
+      if (!cookieHeader) {
+        navigate("/login");
+        return;
+      }
+      const token = cookieHeader
+        .split(";")
+        .find((row) => row.trim().startsWith("role="));
+  
+      if (token) {
+        const role = token.split("=")[1];
+        
+        if (role) {
+          setUser({ role });
+        }
+        
+        if (role !== "owner") {
+          navigate("/unauthorized");
+        }
+      }
+    };
+  
+    fetchUserFromCookie();
+  }, []);
+  
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
