@@ -31,3 +31,17 @@ export async function SignupCall(formData) {
       });
       return response
 }
+
+export async function updateRoleCall(formData) {
+    const response = await fetch(`${endpoint}/user/updateRole`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Email: formData.Email,
+          Role: formData.Role,
+        }),
+      });
+      return response
+}

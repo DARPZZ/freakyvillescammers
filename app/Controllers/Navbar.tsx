@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "@remix-run/react";
 import { jwtDecode } from "jwt-decode";
 import { useLocation } from "@remix-run/react";
+import { getUserFromToken } from "~/util/Cookie";
 
 interface User {
   role: string;
@@ -13,26 +14,14 @@ function Navbar() {
   const location = useLocation();
 
   useEffect(() => {
-    const getUserFromToken = () => {
-      const token = document.cookie
-        .split(";")
-        .find((row) => row.startsWith("role="));
+    const role = getUserFromToken();
 
-      if (token) {
-        const role = token.split("=")[1];
-
-        if (role) {
-          setUserLoggedin(true);
-          setUser({ role });
-        } else {
-          setUserLoggedin(false);
-        }
-      } else {
-        setUserLoggedin(false);
-      }
-    };
-
-    getUserFromToken();
+    if (role) {
+      setUserLoggedin(true);
+      setUser({ role });
+    } else {
+      setUserLoggedin(false);
+    }
   }, [location.pathname]);
 
   return (

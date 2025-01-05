@@ -1,8 +1,28 @@
-import React, { FormEvent } from "react";
-import { useNavigate } from "@remix-run/react";
+import React, { FormEvent, useEffect, useRef, useState } from "react";
+import { Outlet, useLocation, useNavigate } from "@remix-run/react";
+import { getUserFromToken } from "~/util/Cookie";
+
 function Dashboard() {
-  const navigate = useNavigate();
+  interface User {
+    role: string;
+  }
+    const isInitialized = useRef(false);
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+      if (!isInitialized.current) {
+        isInitialized.current = true;
+        const role = getUserFromToken();
+
+        if(role!= 'owner')
+        {
+          navigate('/unauthorized')
+        }
+      }
+    }, []);
+ 
   const handleSubmit = () => {
+    navigate("Ralle");
   };
   return (
     <div className="h-screen w-full flex flex-row items-center ">
@@ -35,7 +55,9 @@ function Dashboard() {
           </div>
         </div>
       </div>
-      <div></div>
+      <div>
+        <Outlet />
+      </div>
     </div>
   );
 }
