@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import { useNavigate } from "@remix-run/react";
-import { jwtDecode } from "jwt-decode";
-import { cwd } from "node:process";
+import { ReportScammerCall } from "~/Controllers/ApiCalls/scammercalls";
+
 interface User {
   role: string;
 }
@@ -51,21 +51,7 @@ function Rappoterespiller() {
     e.preventDefault();
 
     try {
-      const response = await fetch(
-        "https://srv589522.hstgr.cloud:4000/scammer/opret",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            fldMinecraftNavn: formData.minecraftNavn,
-            fldScammetVærdi: formData.fldScammetVærdi,
-          }),
-          credentials: "include",
-        }
-      );
-
+      const response = await ReportScammerCall(formData);
       if (!response.ok) {
         throw new Error("Failed to submit data");
       }

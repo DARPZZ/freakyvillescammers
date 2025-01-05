@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { GetAllScammersCall } from "./ApiCalls/scammercalls";
 
-// Define the Scammer type for TypeScript
 interface Scammer {
   fldScammerId: number;
   fldMinecraftNavn: string;
@@ -21,7 +21,7 @@ useEffect(() => {
   const fetchScammers = async () => {
     try {
       
-      const response = await fetch('https://srv589522.hstgr.cloud:4000/scammer/all');
+      const response = await GetAllScammersCall();
    
       
       if (!response.ok) {

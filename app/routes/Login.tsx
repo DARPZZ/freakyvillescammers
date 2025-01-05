@@ -1,7 +1,9 @@
 import { useNavigate } from "@remix-run/react";
 import React, { ChangeEvent, FormEvent, useState } from "react";
+import { UserLogin } from "~/Controllers/ApiCalls/Usercalls";
 
 function Login() {
+  const [corretLogin, setCorretLogin] = useState(true);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     Email: "",
@@ -19,23 +21,17 @@ function Login() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const response = await fetch(
-      "https://srv589522.hstgr.cloud:4000/user/login",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          Email: formData.Email,
-          password: formData.Password,
-        }),
-        credentials: "include",
-      }
-    );
+    const response = await UserLogin(formData);
+
     if (!response.ok) {
+      console.log(response.status);
+      if (response.status == 401) {
+        setCorretLogin(false);
+      }
       throw new Error("Failed to submit data");
     }
+ 
+
     const data = await response.json();
     const role = data.message;
     document.cookie = `role=${role}; path=/; max-age=3600; samesite=Lax`;
@@ -85,6 +81,13 @@ function Login() {
                   onChange={handleChange}
                 />
               </div>
+              {corretLogin == false && (
+                <div>
+                  <h1 className=" flex justify-center font-bold text-red-700 text-sm">
+                    Forkert Email eller Adgangskode
+                  </h1>
+                </div>
+              )}
               <div className="flex items-center justify-between">
                 <div className="flex items-start"></div>
                 <a

@@ -6,13 +6,13 @@ import { join } from "node:path";
 
 declare module "@remix-run/node" {
   interface Future {
-    v3_singleFetch: true;
+    v3_singleFetch: true,
   }
 }
 
 export default defineConfig({
   base: "/freakyvillescammers/",
-  plugins: [
+  plugins: [ 
     remix({
       basename: "/freakyvillescammers/",
       ssr: false,

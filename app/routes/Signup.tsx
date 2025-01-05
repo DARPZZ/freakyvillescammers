@@ -1,12 +1,13 @@
 import { Link } from "@remix-run/react";
+import { useNavigate } from "@remix-run/react";
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { SignupCall, UserLogin } from "~/Controllers/ApiCalls/Usercalls";
 function Signup() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     Email: "",
     Password: "",
   });
-  
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -20,22 +21,13 @@ function Signup() {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://srv589522.hstgr.cloud:4000/user/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          Email: formData.Email,
-          password: formData.Password,
-        }),
-      });
-
+      const response = await SignupCall(formData);
       if (!response.ok) {
         throw new Error("Failed to submit data");
       }
-
-      const result = await response.json();
+      if (response.ok) {
+        navigate("/Login");
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("Noget gik galt. Prøv igen.");
@@ -43,7 +35,7 @@ function Signup() {
   };
 
   return (
-    <section className="   dark:bg-gray-900">
+    <section className=" dark:bg-gray-900">
       <div className=" h-1/2 flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

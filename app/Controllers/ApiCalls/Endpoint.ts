@@ -1,0 +1,1 @@
+export default 'https://srv589522.hstgr.cloud:4000';
