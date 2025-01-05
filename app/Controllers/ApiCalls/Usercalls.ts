@@ -42,6 +42,22 @@ export async function updateRoleCall(formData) {
           Email: formData.Email,
           Role: formData.Role,
         }),
+        credentials: "include",
       });
+      return response
+}
+export async function RemoveRoleCall(formData) {
+    const response = await fetch(`${endpoint}/user/updateRole`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Email: formData.Email,
+          Role: 'bruger',
+        }),
+        credentials: "include",
+      });
+      
       return response
 }

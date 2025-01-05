@@ -10,3 +10,14 @@ export const getUserFromToken = () => {
   
     return null;
   };
+  export const navigateToUnAuth = (isInitialized, navigate)=>{
+          if (!isInitialized.current) {
+            isInitialized.current = true;
+            const role = getUserFromToken();
+    
+            if(role!= 'owner')
+            {
+              navigate('/unauthorized')
+            }
+          }
+  }

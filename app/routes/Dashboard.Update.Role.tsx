@@ -1,17 +1,9 @@
-import React, { ChangeEvent, FormEvent, useState, useEffect, useRef } from "react";
-import { useNavigate } from "@remix-run/react";
-import { ReportScammerCall } from "~/Controllers/ApiCalls/scammercalls";
-import { getUserFromToken, navigateToUnAuth } from "~/util/Cookie";
-
-interface User {
-  role: string;
-}
-function Rappoterespiller() {
-  const isInitialized = useRef(false);
-  const navigate = useNavigate();
+import React, { ChangeEvent, FormEvent, useState } from "react";
+import { updateRoleCall } from "~/Controllers/ApiCalls/Usercalls";
+function UpdateRole() {
   const [formData, setFormData] = useState({
-    minecraftNavn: "",
-    fldScammetVærdi: "",
+    Email: "",
+    Role: "",
   });
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -20,45 +12,24 @@ function Rappoterespiller() {
       [name]: value,
     });
   };
-
-  
-    useEffect(() => {
-      navigateToUnAuth(isInitialized,navigate)
-    }, []);
-  
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+ const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     try {
-      const response = await ReportScammerCall(formData);
+      const response = await updateRoleCall(formData);
+      
       if (!response.ok) {
         throw new Error("Failed to submit data");
       }
 
       const result = await response.json();
       console.log("Submission successful:", result);
-      alert("Spiller rapporteret med succes!");
-      setFormData({
-        minecraftNavn: "",
-        fldScammetVærdi: "",
-      });
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("Noget gik galt. Prøv igen.");
     }
   };
 
-  return (
-    <div className="h-screen w-full">
-      <div className="flex items-center flex-col">
-        <h1 className="text-xl font-bold">Velkommen</h1>
-        <h2 className="font-bold">
-          Her har du muligheden for at rapportere en spiller, der scammer på
-          Freakyville.
-        </h2>
-      </div>
-      <div className="h-screen w-full flex justify-center items-center">
+    return (
         <div>
           <form
             className="flex flex-col w-full space-y-5"
@@ -66,30 +37,30 @@ function Rappoterespiller() {
           >
             <input
               type="text"
-              name="minecraftNavn"
-              value={formData.minecraftNavn}
+              name="Email"
+              value={formData.Email}
               onChange={handleChange}
               className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-blue-300 shadow-sm focus:shadow"
-              placeholder="Navn på scammer"
+              placeholder="Email"
             />
             <input
               type="text"
-              name="fldScammetVærdi"
-              value={formData.fldScammetVærdi}
+              name="Role"
+              value={formData.Role}
               onChange={handleChange}
               className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-blue-300 shadow-sm focus:shadow"
-              placeholder="Værdi scammet for"
+              placeholder="Ny rolle"
             />
             <input
               className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
               type="submit"
-              value="Rapporter"
+              value="Indsend"
             />
           </form>
         </div>
-      </div>
-    </div>
-  );
-}
+  
+    );
+  };
 
-export default Rappoterespiller;
+
+export default UpdateRole;

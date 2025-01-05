@@ -1,7 +1,8 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
-import { updateRoleCall } from "~/Controllers/ApiCalls/Usercalls";
-function Ralle() {
-  const [formData, setFormData] = useState({
+import React, { ChangeEvent, FormEvent, useState } from 'react'
+import { RemoveRoleCall } from '~/Controllers/ApiCalls/Usercalls';
+
+function RemoveRole() {
+ const [formData, setFormData] = useState({
     Email: "",
     Role: "",
   });
@@ -15,7 +16,7 @@ function Ralle() {
  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await updateRoleCall(formData);
+      const response = await RemoveRoleCall(formData);
       
       if (!response.ok) {
         throw new Error("Failed to submit data");
@@ -44,10 +45,11 @@ function Ralle() {
               placeholder="Email"
             />
             <input
+              hidden
+              readOnly
               type="text"
               name="Role"
-              value={formData.Role}
-              onChange={handleChange}
+              value={"Bruger"}
               className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-blue-300 shadow-sm focus:shadow"
               placeholder="Ny rolle"
             />
@@ -62,5 +64,4 @@ function Ralle() {
     );
   };
 
-
-export default Ralle;
+export default RemoveRole
