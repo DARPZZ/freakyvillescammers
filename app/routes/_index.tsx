@@ -4,7 +4,7 @@ import ScammerTable from "~/Controllers/ScammerTable";
 function _index() {
   return (
     <div className=" flex h-full w-full">
-      <div className="flex justify-center w-full">
+      <div className="flex justify-center h-full w-full">
         <ScammerTable></ScammerTable>
       </div>
     </div>
