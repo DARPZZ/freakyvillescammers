@@ -17,7 +17,7 @@ function Dashboard() {
     navigate(url);
   };
   return (
-    <div className="h-screen w-full flex flex-row items-center ">
+    <div className="h-full w-full flex flex-row items-center ">
       <div className="w-2/4 mr-12 ">
         <div className="grid grid-cols-2 gap-y-5">
           <div>

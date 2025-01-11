@@ -50,7 +50,7 @@ function Rappoterespiller() {
   };
 
   return (
-    <div className="h-screen w-full">
+    <div className="h-full w-full">
       <div className="flex items-center flex-col">
         <h1 className="text-xl font-bold">Velkommen</h1>
         <h2 className="font-bold">
