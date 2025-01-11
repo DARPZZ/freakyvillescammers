@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { GetAllScammersCall } from "./ApiCalls/scammercalls";
-import { start } from "node:repl";
 
 interface Scammer {
   fldScammerId: number;
@@ -11,44 +10,35 @@ interface Scammer {
 function ScammerTable() {
   const [scammers, setScammers] = useState<Scammer[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [filtredScammers, setFiltredScammers] = useState<Scammer[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
-  const totalPages = Math.ceil(filtredScammers.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentScammers = filtredScammers.slice(startIndex, endIndex);
+  const [filtredScammers, setFiltredScammers] = useState<Scammer[ ]>([]);
   useEffect(() => {
-    setCurrentPage(1);
     const filteredScammers = scammers.filter((scammer) =>
-      scammer.fldMinecraftNavn.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+      scammer.fldMinecraftNavn.toLowerCase().includes(searchTerm.toLowerCase()))
     setFiltredScammers(filteredScammers);
-  }, [searchTerm]);
+}, [searchTerm]);
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-  useEffect(() => {
-    const fetchScammers = async () => {
-      try {
-        const response = await GetAllScammersCall();
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data: Scammer[] = await response.json();
-
-        setScammers(data);
-        setFiltredScammers(data);
-      } catch (error) {
-        console.error("Error fetching scammers:", error);
+useEffect(() => {
+  const fetchScammers = async () => {
+    try {
+      
+      const response = await GetAllScammersCall();
+   
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-    };
+      
+      const data: Scammer[] = await response.json();
+      
+      setScammers(data);
+      setFiltredScammers(data);
+    } catch (error) {
+      console.error("Error fetching scammers:", error);
+    }
+  };
 
-    fetchScammers();
-  }, []);
+  fetchScammers();
+}, []);
 
   return (
     <div className="w-full  h-full flex justify-center">
@@ -93,6 +83,7 @@ function ScammerTable() {
                 placeholder="Søg efter en person"
                 required
               />
+              
             </div>
           </form>
         </div>
@@ -101,21 +92,25 @@ function ScammerTable() {
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                <th scope="col" className="px-6 py-3 flex justify-center">
+                <th scope="col" className="px-6  py-3">
                   Scammer Navn
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Scammet for i DB(s)
                 </th>
               </tr>
             </thead>
             <tbody>
-              {currentScammers.length > 0 ? (
-                currentScammers.map((scammer) => (
+              {scammers.length > 0 ? (
+                filtredScammers.map((scammer) => (
                   <tr
                     key={scammer.fldScammerId}
                     className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                   >
-                    <th className="px-6 flex justify-center text-xl   py-4 font-bold text-gray-900 whitespace-nowrap dark:text-white">
+                    <th className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                       {scammer.fldMinecraftNavn}
                     </th>
+                    <td className="px-6 py-4">{scammer.fldScammetVærdi}</td>
                   </tr>
                 ))
               ) : (
@@ -130,35 +125,6 @@ function ScammerTable() {
               )}
             </tbody>
           </table>
-          <div className="flex justify-center items-center space-x-5 mt-4">
-            <button
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-              className="px-3 py-1 mx-1 text-sm font-medium text-gray-700 bg-gray-200 rounded disabled:opacity-50"
-            >
-              Previous
-            </button>
-            {Array.from({ length: totalPages }, (_, index) => (
-              <button
-                key={index}
-                onClick={() => handlePageChange(index + 1)}
-                className={`px-3 py-1 mx-1 text-sm font-medium ${
-                  currentPage === index + 1
-                    ? "text-white bg-blue-500"
-                    : "text-gray-700 bg-gray-200"
-                } rounded`}
-              >
-                {index + 1}
-              </button>
-            ))}
-            <button
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              className="px-3 py-1 mx-1 text-sm font-medium text-gray-700 bg-gray-200 rounded disabled:opacity-50"
-            >
-              Next
-            </button>
-          </div>
         </div>
       </div>
     </div>
