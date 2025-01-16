@@ -53,12 +53,12 @@ function Rappoterespiller() {
     <div className="h-full w-full">
       <div className="flex items-center flex-col">
         <h1 className="text-xl font-bold">Velkommen</h1>
-        <h2 className="font-bold">
+        <h2 className="font-bold text-center pt-5">
           Her har du muligheden for at rapportere en spiller, der scammer på
           Freakyville.
         </h2>
       </div>
-      <div className="h-screen w-full flex justify-center items-center">
+      <div className="h-full w-full flex justify-center mt-40 ">
         <div>
           <form
             className="flex flex-col w-full space-y-5"

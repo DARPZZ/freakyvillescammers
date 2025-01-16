@@ -18,8 +18,8 @@ function Dashboard() {
   };
   return (
     <div className="h-full w-full flex flex-row items-center justify-center ">
-      <div className="w-2/4 mr-12 ">
-        <div className="grid grid-cols-2 gap-y-5">
+      <div className="w-3/4 ">
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-y-5">
           <div>
             <button
               onClick={() => DashboardNavigation("Update/Role")} 

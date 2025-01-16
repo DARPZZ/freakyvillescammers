@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "@remix-run/react";
 import { jwtDecode } from "jwt-decode";
 import { useLocation } from "@remix-run/react";
-import { getUserFromToken } from "~/util/Cookie";
+import { getUserFromToken,DelteRoleCookie } from "~/util/Cookie";
 
 interface User {
   role: string;
@@ -65,7 +65,10 @@ function Navbar() {
             {userLoggedin == true && (
               <tr className="py-2">
                 <td>
-                  <button className="flex p-3 bg-blue-700 justify-center rounded-lg hover:bg-blue-600 transition duration-300 w-full">
+                  <button
+                    onClick={DelteRoleCookie}
+                    
+                   className="flex p-3 bg-blue-700 justify-center rounded-lg hover:bg-blue-600 transition duration-300 w-full">
                     Logud
                   </button>
                 </td>

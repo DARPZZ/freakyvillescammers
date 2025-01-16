@@ -1,4 +1,4 @@
-import { useNavigate } from "@remix-run/react";
+import { useNavigate, Link } from "@remix-run/react";
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { UserLogin } from "~/Controllers/ApiCalls/Usercalls";
 
@@ -30,7 +30,6 @@ function Login() {
       }
       throw new Error("Failed to submit data");
     }
- 
 
     const data = await response.json();
     const role = data.message;
@@ -39,8 +38,8 @@ function Login() {
   };
 
   return (
-    <section className=" h-full bg-gray-50 dark:bg-gray-900">
-      <div className="flex flex-col items-center justify-center px-6 py-8  lg:py-0">
+    <section className="mt-16 w-full h-full  dark:bg-gray-900">
+      <div className="flex  flex-col items-center justify-center px-6 py-8  lg:py-0">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
@@ -94,23 +93,24 @@ function Login() {
                   href="#"
                   className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
-                  Forgot password?
+                  Glemt kodeord?
                 </a>
               </div>
               <button
                 type="submit"
                 className="w-full text-black bg-gray-200 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
               >
-                Sign in
+                Log på
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Don’t have an account yet?{" "}
-                <a
-                  href="#"
+                <Link
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                  to="/Signup"
                 >
-                  Sign up
-                </a>
+                  Lav en konto
+                </Link>
+                ;
               </p>
             </form>
           </div>

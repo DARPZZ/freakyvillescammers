@@ -53,7 +53,7 @@ function ScammerTable() {
   return (
     <div className="w-full  h-full flex justify-center">
       <div className="flex flex-col w-full h-full items-center">
-        <h1 className="text-2xl font-bold">Scammers på Freakyville</h1>
+        <h1 className="text-2xl flex text-center font-bold">Scammers på Freakyville</h1>
 
         <div className="pt-10 w-4/5">
           <form
@@ -97,16 +97,16 @@ function ScammerTable() {
           </form>
         </div>
 
-        <div className="relative overflow-x-auto w-full pt-7">
-          <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <div className="relative pr-5 w-full pt-7">
+          <table className="w-full   text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                <th scope="col" className="px-6 py-3 flex justify-center">
+                <th scope="col" className="px-6 py-3  flex justify-center">
                   Scammer Navn
                 </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody >
               {currentScammers.length > 0 ? (
                 currentScammers.map((scammer) => (
                   <tr

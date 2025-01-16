@@ -21,3 +21,8 @@ export const getUserFromToken = () => {
             }
           }
   }
+  export const DelteRoleCookie =()=>{
+    document.cookie = "role=; path=/; max-age=0; samesite=Lax; secure";
+    
+    window.location.reload();
+  }
