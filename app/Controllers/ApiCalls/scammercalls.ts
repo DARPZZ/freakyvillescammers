@@ -9,7 +9,6 @@ export async function ReportScammerCall(formData) {
           },
           body: JSON.stringify({
             fldMinecraftNavn: formData.minecraftNavn,
-            fldScammetVærdi: formData.fldScammetVærdi,
           }),
           credentials: "include",
         }
