@@ -53,7 +53,9 @@ function ScammerTable() {
   return (
     <div className="w-full  h-full flex justify-center">
       <div className="flex flex-col w-full h-full items-center">
-        <h1 className="text-2xl flex text-center font-bold">Scammers på Freakyville</h1>
+        <h1 className="text-2xl flex text-center font-bold">
+          Scammers på Freakyville
+        </h1>
 
         <div className="pt-10 w-4/5">
           <form
@@ -95,6 +97,11 @@ function ScammerTable() {
               />
             </div>
           </form>
+          <div className=" mt-2 w-full flex flex-col items-center">
+            <a target="_blank" className="underline" href="https://da.namemc.com/">
+              Slå en person op på namemc
+            </a>
+          </div>
         </div>
 
         <div className="relative pr-5 w-full pt-7">
@@ -106,7 +113,7 @@ function ScammerTable() {
                 </th>
               </tr>
             </thead>
-            <tbody >
+            <tbody>
               {currentScammers.length > 0 ? (
                 currentScammers.map((scammer) => (
                   <tr
@@ -160,7 +167,6 @@ function ScammerTable() {
             </button>
           </div>
         </div>
-        
       </div>
     </div>
   );

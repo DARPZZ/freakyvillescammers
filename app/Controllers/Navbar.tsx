@@ -3,7 +3,6 @@ import { Link } from "@remix-run/react";
 import { jwtDecode } from "jwt-decode";
 import { useLocation } from "@remix-run/react";
 import { getUserFromToken,DelteRoleCookie } from "~/util/Cookie";
-
 interface User {
   role: string;
 }
@@ -40,6 +39,16 @@ function Navbar() {
                 </Link>
               </td>
             </tr>
+            <tr className="py-2">
+              <td className="flex justify-center">
+                <Link
+                  to=""
+                  className="flex p-3 w-full justify-center bg-blue-700 rounded-lg hover:bg-blue-600 transition duration-300"
+                >
+                  Se Smurfs
+                </Link>
+              </td>
+            </tr>
            
             {userLoggedin == false && (
               <><tr className="py-2">
@@ -68,7 +77,7 @@ function Navbar() {
                   <button
                     onClick={DelteRoleCookie}
                     
-                   className="flex p-3 bg-blue-700 justify-center rounded-lg hover:bg-blue-600 transition duration-300 w-full">
+                    className="flex p-3 bg-blue-700 justify-center rounded-lg hover:bg-blue-600 transition duration-300 w-full">
                     Logud
                   </button>
                 </td>

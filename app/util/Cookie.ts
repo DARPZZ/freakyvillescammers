@@ -1,3 +1,4 @@
+
 export const getUserFromToken = () => {
     const token = document.cookie
       .split(";")
@@ -22,7 +23,8 @@ export const getUserFromToken = () => {
           }
   }
   export const DelteRoleCookie =()=>{
+    console.warn(GetMinecraftUID("Darpzz"))
     document.cookie = "role=; path=/; max-age=0; samesite=Lax; secure";
     
-    window.location.reload();
+    //window.location.reload();
   }
