@@ -3,6 +3,7 @@ import { Link } from "@remix-run/react";
 import { jwtDecode } from "jwt-decode";
 import { useLocation } from "@remix-run/react";
 import { getUserFromToken,DelteRoleCookie } from "~/util/Cookie";
+
 interface User {
   role: string;
 }
@@ -24,7 +25,7 @@ function Navbar() {
   }, [location.pathname]);
 
   return (
-    <div className=" h-full w-full bg-gray-100">
+    <div className="bg-gray-100">
       <div className=" h-full  w-full flex flex-col items-center bg-blue-900">
         <img className="p-2 w-40 pt-5" src="freakyvile.png" alt="Freakyville" />
         <table className="w-full border-separate justify-center border-spacing-3 mt-10 text-white font-semibold">
@@ -39,7 +40,7 @@ function Navbar() {
                 </Link>
               </td>
             </tr>
-            <tr className="py-2">
+            {/* <tr className="py-2">
               <td className="flex justify-center">
                 <Link
                   to=""
@@ -48,7 +49,7 @@ function Navbar() {
                   Se Smurfs
                 </Link>
               </td>
-            </tr>
+            </tr> */}
            
             {userLoggedin == false && (
               <><tr className="py-2">

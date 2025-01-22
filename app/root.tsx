@@ -21,13 +21,16 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className=" flex min-h-screen w-full">
-        <div className="w-2/4 md:w-1/4  bg-blue-900 ">
-          <Navbar />
+      <body>
+        <div className="flex w-full h-dvh">
+          <div className="w-2/4 md:w-1/4  bg-blue-900 ">
+            <Navbar /> 
+          </div>
+          <div className="w-full ml-[0.6667%]">
+            <Outlet />
+          </div>
         </div>
-        <div className="w-full ml-[0.6667%]">
-          <Outlet />
-        </div>
+
         <ScrollRestoration />
         <Scripts />
       </body>
