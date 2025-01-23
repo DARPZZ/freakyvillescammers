@@ -16,14 +16,13 @@ export default function App() {
   return (
     <html lang="en">
       <head>
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XN2L2WGFK"></script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L37WT09HW"></script>
         <script dangerouslySetInnerHTML={{__html:`
           window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-1XN2L2WGFK');`}}>
-        </script>
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-7L37WT09HW');
+        `}}/>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
