@@ -1,11 +1,9 @@
-import { json } from "@remix-run/node";
 import {
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
   useLocation,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
@@ -14,15 +12,14 @@ import styles from "./tailwind.css?url";
 import Navbar from "./Controllers/Navbar";
 import * as gtag from "~/util/gtags.client";
 import { useEffect } from "react";
+
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
-export const loader = async () => {
-  return json({ gaTrackingId: "G-7L37WT09HW"});
-};
+const gaTrackingId = "G-7L37WT09HW";
 
 export default function App() {
   const location = useLocation();
-  const { gaTrackingId } = useLoaderData<typeof loader>();
+
   useEffect(() => {
     if (gaTrackingId?.length) {
       gtag.pageview(location.pathname, gaTrackingId);
@@ -33,7 +30,6 @@ export default function App() {
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
