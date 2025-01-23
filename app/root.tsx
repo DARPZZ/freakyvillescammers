@@ -20,7 +20,10 @@ export default function App() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L37WT09HW"></script>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-7L37WT09HW"
+        ></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
