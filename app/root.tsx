@@ -16,16 +16,15 @@ export default function App() {
   return (
     <html lang="en">
       <head>
-        <meta charSet="utf-8" />
-      
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-BRB1PPEM71"></script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XN2L2WGFK"></script>
         <script dangerouslySetInnerHTML={{__html:`
           window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-BRB1PPEM71');`}}>
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1XN2L2WGFK');`}}>
         </script>
-        
+        <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
