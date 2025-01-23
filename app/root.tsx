@@ -7,35 +7,45 @@ import {
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
 
+import { useEffect } from "react";
+import { useLocation } from "@remix-run/react";
+
 import styles from "./tailwind.css?url";
 import Navbar from "./Controllers/Navbar";
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
 export default function App() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (window.gtag) {
+      window.gtag("config", "G-VPVC945BG2", {
+        page_path: location.pathname,
+      });
+    }
+  }, [location]);
+
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
-         {/* Google Analytics Script */}
-         <script
+        {/* Google Analytics Script */}
+        <script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=G-VPVC945BG2`}
         ></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-VPVC945BG2', {
-        page_path: window.location.pathname,
-        });
-    `,
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-VPVC945BG2');
+            `,
           }}
         />
       </head>
