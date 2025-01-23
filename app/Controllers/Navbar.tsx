@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "@remix-run/react";
 import { jwtDecode } from "jwt-decode";
 import { useLocation } from "@remix-run/react";
-import { getUserFromToken,DelteRoleCookie } from "~/util/Cookie";
+import { getUserFromToken, DelteRoleCookie } from "~/util/Cookie";
 
 interface User {
   role: string;
@@ -34,34 +34,37 @@ function Navbar() {
               <td className="flex justify-center">
                 <Link
                   to=""
-                  className="flex p-3 w-full justify-center bg-blue-700 rounded-lg hover:bg-blue-600 transition duration-300"
+                  className=" p-3 w-full text-center bg-blue-700 rounded-lg hover:bg-blue-600 transition duration-300"
                 >
                   Hjem
                 </Link>
               </td>
             </tr>
-            {/* <tr className="py-2">
+            <tr className="py-2">
               <td className="flex justify-center">
-                <Link
-                  to=""
-                  className="flex p-3 w-full justify-center bg-blue-700 rounded-lg hover:bg-blue-600 transition duration-300"
+                <a
+                  href="https://namemc.com/"
+                  target="_blank"
+                  className=" text-center p-3 w-full bg-blue-700 rounded-lg hover:bg-blue-600 transition duration-300"
                 >
-                  Se Smurfs
-                </Link>
+                  Link til NameMC
+                </a>
               </td>
-            </tr> */}
-           
+            </tr>
+
             {userLoggedin == false && (
-              <><tr className="py-2">
-                <td>
-                  <Link
-                    to="Login"
-                    className="flex p-3 justify-center bg-blue-700 rounded-lg hover:bg-blue-600 transition duration-300"
-                  >
-                    Login
-                  </Link>
-                </td>
-              </tr><tr className="py-2">
+              <>
+                <tr className="py-2">
+                  <td>
+                    <Link
+                      to="Login"
+                      className="flex p-3 justify-center bg-blue-700 rounded-lg hover:bg-blue-600 transition duration-300"
+                    >
+                      Login
+                    </Link>
+                  </td>
+                </tr>
+                <tr className="py-2">
                   <td>
                     <Link
                       to="Signup"
@@ -70,15 +73,16 @@ function Navbar() {
                       Signup
                     </Link>
                   </td>
-                </tr></>
+                </tr>
+              </>
             )}
             {userLoggedin == true && (
               <tr className="py-2">
                 <td>
                   <button
                     onClick={DelteRoleCookie}
-                    
-                    className="flex p-3 bg-blue-700 justify-center rounded-lg hover:bg-blue-600 transition duration-300 w-full">
+                    className="flex p-3 bg-blue-700 justify-center rounded-lg hover:bg-blue-600 transition duration-300 w-full"
+                  >
                     Logud
                   </button>
                 </td>
@@ -97,14 +101,14 @@ function Navbar() {
                   </td>
                 </tr>
                 <tr>
-                <td>
-                  <Link
-                    to="/Dashboard"
-                    className="flex p-3 justify-center bg-blue-700 rounded-lg hover:bg-blue-600 transition duration-300"
-                  >
-                    Dashboard
-                  </Link>
-                </td>
+                  <td>
+                    <Link
+                      to="/Dashboard"
+                      className="flex p-3 justify-center bg-blue-700 rounded-lg hover:bg-blue-600 transition duration-300"
+                    >
+                      Dashboard
+                    </Link>
+                  </td>
                 </tr>
               </>
             )}
