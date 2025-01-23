@@ -103,7 +103,7 @@ function Login() {
                 Log på
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Don’t have an account yet?{" "}
+                Har du ikke en konto endnu?{" "}
                 <Link
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                   to="/Signup"

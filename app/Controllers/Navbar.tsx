@@ -27,7 +27,7 @@ function Navbar() {
   return (
     <div className="bg-gray-100">
       <div className=" h-full  w-full flex flex-col items-center bg-blue-900">
-        <img className="p-2 w-40 pt-5" src="freakyvile.png" alt="Freakyville" />
+        <img className="p-2 w-32 pt-5" src="freakyvile.png" />
         <table className="w-full border-separate justify-center border-spacing-3 mt-10 text-white font-semibold">
           <tbody>
             <tr className="py-2">
@@ -110,7 +110,7 @@ function Navbar() {
             )}
           </tbody>
         </table>
-        <img className="w-2/4 pt-5" src="corruption.png" alt="awdw" />
+        <img className="w-2/4 pt-5" src="corruption.png" />
       </div>
     </div>
   );

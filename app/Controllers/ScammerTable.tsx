@@ -38,7 +38,6 @@ function ScammerTable() {
         }
 
         const data: Scammer[] = await response.json();
-        console.warn(data);
         setScammers(data);
         setFiltredScammers(data);
       } catch (error) {
@@ -52,7 +51,7 @@ function ScammerTable() {
   return (
     <div className="w-full  h-full flex justify-center">
       <div className="flex flex-col w-full h-full items-center">
-        <h1 className="text-2xl flex text-center font-bold">
+        <h1 className="text-4xl pt-5 flex text-center font-bold">
           Scammers på Freakyville
         </h1>
 
@@ -96,20 +95,10 @@ function ScammerTable() {
               />
             </div>
           </form>
-          <div className=" mt-2 w-full flex flex-col items-center">
-            <a
-              target="_blank"
-              className="underline"
-              href="https://da.namemc.com/"
-            >
-              Slå en person op på namemc
-            </a>
-          </div>
         </div>
-
         <div className="relative pr-5 w-full pt-7">
           <table className="w-full   text-sm text-gray-500 dark:text-gray-400">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <thead className=" text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
                 <th scope="col" className="px-6  py-3">
                   Scammer Navn
@@ -126,18 +115,19 @@ function ScammerTable() {
                     key={scammer.fldMinecraftUUID}
                     className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                   >
-                    <th className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <th className="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
                       {scammer.fldMinecraftNavn}
                     </th>
-                    {/* <td className="flex justify-center">{scammer.fldMinecraftUUID}</td> */}
-                    <a
-                      className="flex justify-center"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href={`https://namemc.com/profile/${scammer.fldMinecraftUUID}`}
-                    >
-                      NameMC
-                    </a>
+                    <th>
+                      <a
+                        className="flex px-6 py-4 font-bold text-xl justify-center"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={`https://namemc.com/profile/${scammer.fldMinecraftUUID}`}
+                      >
+                        NameMC konto
+                      </a>
+                    </th>
                   </tr>
                 ))
               ) : (
