@@ -17,7 +17,15 @@ export default function App() {
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
+      
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-BRB1PPEM71"></script>
+        <script dangerouslySetInnerHTML={{__html:`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-BRB1PPEM71');`}}>
+        </script>
+        
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />

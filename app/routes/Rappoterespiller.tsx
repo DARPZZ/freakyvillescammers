@@ -11,7 +11,6 @@ function Rappoterespiller() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     minecraftNavn: "",
-    fldScammetVærdi: "",
   });
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -41,7 +40,6 @@ function Rappoterespiller() {
       alert("Spiller rapporteret med succes!");
       setFormData({
         minecraftNavn: "",
-        fldScammetVærdi: "",
       });
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -71,14 +69,6 @@ function Rappoterespiller() {
               onChange={handleChange}
               className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-blue-300 shadow-sm focus:shadow"
               placeholder="Navn på scammer"
-            />
-            <input
-              type="text"
-              name="fldScammetVærdi"
-              value={formData.fldScammetVærdi}
-              onChange={handleChange}
-              className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-blue-300 shadow-sm focus:shadow"
-              placeholder="Værdi scammet for"
             />
             <input
               className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
