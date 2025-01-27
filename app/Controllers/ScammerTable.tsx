@@ -49,8 +49,8 @@ function ScammerTable() {
   }, []);
 
   return (
-    <div className="w-full  h-full flex justify-center">
-      <div className="flex flex-col w-full h-full items-center">
+    <div className="w-full flex justify-center">
+      <div className="flex flex-col w-full items-center">
         <h1 className="text-4xl pt-5 flex text-center font-bold">
           Scammers på Freakyville
         </h1>

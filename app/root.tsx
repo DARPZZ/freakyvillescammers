@@ -67,7 +67,7 @@ export default function App() {
         />
       </head>
       <body>
-        <div className="flex w-full h-dvh">
+        <div className="flex w-full h-full">
           <div className="w-2/4 md:w-1/4 flex justify-center items-center bg-blue-900 ">
             <Navbar />
           </div>

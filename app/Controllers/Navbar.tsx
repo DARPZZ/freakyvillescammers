@@ -25,9 +25,9 @@ function Navbar() {
   }, [location.pathname]);
 
   return (
-    <div className="bg-gray-100">
-      <div className=" h-full  w-full flex flex-col items-center bg-blue-900">
-        <img className="p-2 w-32 pt-5" src="freakyvile.png" />
+    <div>
+      <div className="w-full h-full flex flex-col items-center bg-blue-900">
+        <img className=" w-32 pt-5" src="freakyvile.png" />
         <table className="w-full border-separate justify-center border-spacing-3 mt-10 text-white font-semibold">
           <tbody>
             <tr className="py-2">
