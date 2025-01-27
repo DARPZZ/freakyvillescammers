@@ -19,12 +19,29 @@ export default function App() {
   const location = useLocation();
 
   useEffect(() => {
-    if (window.gtag) {
-      window.gtag("config", "G-VPVC945BG2", {
-        page_path: location.pathname,
-      });
-    }
-  }, [location]);
+    const script = document.createElement("script");
+    script.src = `https://www.googletagmanager.com/gtag/js?id=G-VPVC945BG2`;
+    script.async = true;
+  
+    script.onload = () => {
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      window.gtag = gtag;
+      window.gtag("js", new Date());
+      window.gtag("config", "G-VPVC945BG2");
+    };
+  
+    document.head.appendChild(script);
+  
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+  
+  
 
   return (
     <html lang="en">
