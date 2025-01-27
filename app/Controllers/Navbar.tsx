@@ -26,7 +26,7 @@ function Navbar() {
 
   return (
     <div>
-      <div className="w-full h-full flex flex-col items-center bg-blue-900">
+      <div className="w-full flex flex-col items-center bg-blue-900">
         <img className=" w-32 pt-5" src="freakyvile.png" />
         <table className="w-full border-separate justify-center border-spacing-3 mt-10 text-white font-semibold">
           <tbody>

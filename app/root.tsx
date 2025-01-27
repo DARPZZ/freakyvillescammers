@@ -22,9 +22,8 @@ export default function App() {
     const script = document.createElement("script");
     script.src = `https://www.googletagmanager.com/gtag/js?id=G-VPVC945BG2`;
     script.async = true;
-  
-    script.onload = () => {
 
+    script.onload = () => {
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         window.dataLayer.push(arguments);
@@ -33,15 +32,13 @@ export default function App() {
       window.gtag("js", new Date());
       window.gtag("config", "G-VPVC945BG2");
     };
-  
+
     document.head.appendChild(script);
-  
+
     return () => {
       document.head.removeChild(script);
     };
   }, []);
-  
-  
 
   return (
     <html lang="en">
@@ -67,14 +64,15 @@ export default function App() {
         />
       </head>
       <body>
-        <div className="flex w-full h-full">
-          <div className="w-2/4 md:w-1/4 flex justify-center items-center bg-blue-900 ">
+        <div className="flex relative w-full h-screen">
+          <div className="w-2/4 md:w-1/4 justify-center items-center bg-blue-900 h-full">
             <Navbar />
           </div>
           <div className="w-full ml-[0.6667%]">
             <Outlet />
           </div>
         </div>
+
         <ScrollRestoration />
         <Scripts />
       </body>
