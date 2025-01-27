@@ -92,12 +92,12 @@ function Signup() {
                     className="font-light text-gray-500 dark:text-gray-300"
                   >
                     Jeg acceptere{" "}
-                    <a
+                    <Link
                       className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                      href="#"
+                      to={"/Terms"}
                     >
                       Terms and Conditions
-                    </a>
+                    </Link>
                   </label>
                 </div>
               </div>

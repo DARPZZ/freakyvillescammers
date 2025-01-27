@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   Links,
   Meta,
@@ -6,18 +7,23 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
+import Navbar from "./Controllers/Navbar"; // Import your Navbar component
+import "./tailwind.css";
 
-import { useEffect } from "react";
-import { useLocation } from "@remix-run/react";
+export const links: LinksFunction = () => [
+  { rel: "preconnect", href: "https://fonts.googleapis.com" },
+  {
+    rel: "preconnect",
+    href: "https://fonts.gstatic.com",
+    crossOrigin: "anonymous",
+  },
+  {
+    rel: "stylesheet",
+    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+  },
+];
 
-import styles from "./tailwind.css?url";
-import Navbar from "./Controllers/Navbar";
-
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
-
-export default function App() {
-  const location = useLocation();
-
+export function Layout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const script = document.createElement("script");
     script.src = `https://www.googletagmanager.com/gtag/js?id=G-VPVC945BG2`;
@@ -47,35 +53,19 @@ export default function App() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
-        {/* Google Analytics Script */}
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=G-VPVC945BG2`}
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-VPVC945BG2');
-            `,
-          }}
-        />
       </head>
-      <body className="">
-        <div className="flex  w-full h-screen">
-          <div className="w-2/4 flex md:w-1/4 justify-center items-center bg-blue-900 h-screen">
-            <Navbar />
-          </div>
-          <div className="w-full flex h-screen ml-[0.6667%]">
-            <Outlet />
-          </div>
+      <body className="flex min-h-screen">
+        <div className="w-2/4 flex md:w-1/4 bg-blue-900">
+          <Navbar />
         </div>
-
+        <main className="w-3/4 p-6">{children}</main>
         <ScrollRestoration />
         <Scripts />
       </body>
     </html>
   );
+}
+
+export default function App() {
+  return <Outlet />;
 }
