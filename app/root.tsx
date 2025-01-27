@@ -63,12 +63,12 @@ export default function App() {
           }}
         />
       </head>
-      <body>
-        <div className="flex relative w-full h-screen">
-          <div className="w-2/4 md:w-1/4 justify-center items-center bg-blue-900 h-full">
+      <body className="">
+        <div className="flex  w-full h-screen">
+          <div className="w-2/4 flex md:w-1/4 justify-center items-center bg-blue-900 h-screen">
             <Navbar />
           </div>
-          <div className="w-full ml-[0.6667%]">
+          <div className="w-full flex h-screen ml-[0.6667%]">
             <Outlet />
           </div>
         </div>
