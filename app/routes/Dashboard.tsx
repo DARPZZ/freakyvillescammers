@@ -1,7 +1,7 @@
 import React, { FormEvent, useEffect, useRef, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "@remix-run/react";
 import { getUserFromToken, navigateToUnAuth } from "~/util/Cookie";
-
+import { RoleEnum } from "~/util/roleEnum";
 function Dashboard() {
   interface User {
     role: string;
@@ -10,8 +10,8 @@ function Dashboard() {
     const navigate = useNavigate();
   
     useEffect(() => {
-      navigateToUnAuth(isInitialized,navigate)
-    }, []);
+      navigateToUnAuth(isInitialized,navigate,[RoleEnum.admin, RoleEnum.mod])
+    }, [isInitialized]);
  
   const DashboardNavigation = (url) => {
     navigate(url);

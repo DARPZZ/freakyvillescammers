@@ -2,7 +2,7 @@ import React, { ChangeEvent, FormEvent, useState, useEffect, useRef } from "reac
 import { useNavigate } from "@remix-run/react";
 import { ReportScammerCall } from "~/Controllers/ApiCalls/scammercalls";
 import { getUserFromToken, navigateToUnAuth } from "~/util/Cookie";
-
+import { RoleEnum } from "~/util/roleEnum";
 interface User {
   role: string;
 }
@@ -22,7 +22,7 @@ function Rappoterespiller() {
 
   
     useEffect(() => {
-      navigateToUnAuth(isInitialized,navigate)
+      navigateToUnAuth(isInitialized,navigate,[RoleEnum.admin, RoleEnum.mod])
     }, []);
   
 

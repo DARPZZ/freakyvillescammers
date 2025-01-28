@@ -3,7 +3,7 @@ import { Link } from "@remix-run/react";
 import { jwtDecode } from "jwt-decode";
 import { useLocation } from "@remix-run/react";
 import { getUserFromToken, DelteRoleCookie } from "~/util/Cookie";
-
+import { RoleEnum } from "~/util/roleEnum";
 interface User {
   role: string;
 }
@@ -89,7 +89,7 @@ function Navbar() {
                 </td>
               </tr>
             )}
-            {user?.role == "owner" && (
+            {user?.role == RoleEnum.admin || user?.role == RoleEnum.mod || user?.role == RoleEnum.owner  && (
               <>
                 <tr className="py-2">
                   <td>

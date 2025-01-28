@@ -120,7 +120,7 @@ function ScammerTable() {
                     </th>
                     <th>
                       <a
-                        className="flex px-6 py-4 font-bold text-xl justify-center"
+                        className="flex px-6 py-4 font-extrabold  text-xl justify-center"
                         target="_blank"
                         rel="noopener noreferrer"
                         href={`https://namemc.com/profile/${scammer.fldMinecraftUUID}`}
