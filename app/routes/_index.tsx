@@ -10,5 +10,4 @@ function _index() {
     </div>
   );
 }
-
 export default _index;
